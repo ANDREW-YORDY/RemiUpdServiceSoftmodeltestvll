@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+
 public class RemFacController {
 
     private Connection conn;
@@ -15,7 +16,8 @@ public class RemFacController {
         this.conn = conn;
     }
 
-    //CONSULTA A 2 TABLAS SIMULTANEAMENTE - CON DATO DE ENTRADA
+    //CONSULTA *ALL, A 2 TABLAS SIMULTANEAMENTE - CON DATO DE ENTRADA
+    
    public void displayDataFromBothTables(JTextArea textArea) {
         try {
             String query = "SELECT TOP(20) * FROM dboProducto.productos; SELECT TOP(20) * FROM dboProducto.prodComp";
@@ -51,6 +53,8 @@ public class RemFacController {
             ex.printStackTrace();
         }
     }
+   
+   //
    /*
        //CONSULTA A 2 TABLAS SIMULTANEAMENTE - CON DATO DE ENTRADA - SIN SUBTITULOS LIMITES
     public void displayDataFromBothTables(JTextArea textArea) {

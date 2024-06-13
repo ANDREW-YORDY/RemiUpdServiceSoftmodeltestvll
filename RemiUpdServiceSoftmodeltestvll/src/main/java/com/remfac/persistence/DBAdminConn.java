@@ -24,11 +24,11 @@ public class DBAdminConn {
             String StrDB = "jdbc:sqlserver://" + ip + ":" + pto + ";" + "databaseName=" + DB + ";" + "encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(StrDB, user, passw);
 
-            JOptionPane.showMessageDialog(null, "CONEXIÓN EXITOSA!... A LA DB.");
+            JOptionPane.showMessageDialog(null, "SUCCESSFUL CONNECTION -> DB.");
 
         } catch (HeadlessException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "CONEXIÓN FALLIDA ... A LA DB.");
+            JOptionPane.showMessageDialog(null, "FAILED CONNECTION -> DB.");
         }
         return conn;
     }
