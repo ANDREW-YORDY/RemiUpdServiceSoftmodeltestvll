@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-
 public class RemFacController {
 
     private Connection conn;
@@ -16,34 +15,39 @@ public class RemFacController {
         this.conn = conn;
     }
 
-    //CONSULTA *ALL, A 2 TABLAS SIMULTANEAMENTE - CON DATO DE ENTRADA
-    
-   public void displayDataFromBothTables(JTextArea textArea) {
+    //CD: 234567   -  123456
+    // Nuevo método para consultar ambas tablas utilizando un código de entrada
+    public void displayDataFromBothTablesByCode(String codigo, JTextArea textArea) {
         try {
-            String query = "SELECT TOP(20) * FROM dboProducto.productos; SELECT TOP(20) * FROM dboProducto.prodComp";
-            PreparedStatement statement = conn.prepareStatement(query);
-            boolean hasResults = statement.execute();
+            String query1 = "SELECT * FROM dboProducto.productos WHERE Codigo = ?";
+            String query2 = "SELECT * FROM dboProducto.prodComp WHERE Codigo = ?";
+            PreparedStatement statement1 = conn.prepareStatement(query1);
+            PreparedStatement statement2 = conn.prepareStatement(query2);
+
+            //Esta instruccion se añadio al nuevo metodo
+            statement1.setString(1, codigo);
+            statement2.setString(1, codigo);
 
             StringBuilder resultText = new StringBuilder();
 
             // Resultados de la tabla dboProducto.productos
-            resultText.append("Resultados de dboProducto.productos:\n");
-            ResultSet resultSet = statement.getResultSet();
-            while (resultSet.next()) {
-                resultText.append(resultSet.getString("Codigo")).append(", ")
-                          .append(resultSet.getString("Producto")).append(", ")
-                          .append(resultSet.getString("Cantidad")).append("\n");
+            resultText.append("*DATA TRADE*:\n");
+            ResultSet resultSet1 = statement1.executeQuery();
+            while (resultSet1.next()) {
+                resultText.append("Código: ").append(resultSet1.getString("Codigo")).append(", ")
+                          .append("Producto: ").append(resultSet1.getString("Producto")).append(", ")
+                          .append("Cantidad: ").append(resultSet1.getString("Cantidad")).append("\n");
             }
+            
+            resultText.append("- - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
-            // Moverse a la siguiente consulta
-            if (statement.getMoreResults()) {
-                resultText.append("\nResultados de dboProducto.prodComp:\n");
-                resultSet = statement.getResultSet();
-                while (resultSet.next()) {
-                    resultText.append(resultSet.getString("Codigo")).append(", ")
-                              .append(resultSet.getString("Producto")).append(", ")
-                              .append(resultSet.getString("Cantidad")).append("\n");
-                }
+            // Resultados de la tabla dboProducto.prodComp
+            resultText.append("\n*DATA MVTRADE*:\n");
+            ResultSet resultSet2 = statement2.executeQuery();
+            while (resultSet2.next()) {
+                resultText.append("Código: ").append(resultSet2.getString("Codigo")).append(", ")
+                          .append("Producto: ").append(resultSet2.getString("Producto")).append(", ")
+                          .append("Cantidad: ").append(resultSet2.getString("Cantidad")).append("\n");
             }
 
             textArea.setText(resultText.toString());
@@ -53,88 +57,39 @@ public class RemFacController {
             ex.printStackTrace();
         }
     }
-   
-   //
-   /*
-       //CONSULTA A 2 TABLAS SIMULTANEAMENTE - CON DATO DE ENTRADA - SIN SUBTITULOS LIMITES
-    public void displayDataFromBothTables(JTextArea textArea) {
+
+    // UPDATE 'Codigo' in both tables.
+    public void updateCodigoInBothTables(String oldCod, String newCod) {
         try {
-            String query = "SELECT TOP(20)* FROM dboProducto.productos; SELECT TOP(20)* FROM dboProducto.prodComp";
-            PreparedStatement statement = conn.prepareStatement(query);
-            boolean hasResults = statement.execute();
+            String updateQuery1 = "UPDATE dboProducto.productos SET Codigo = ? WHERE Codigo = ?";
+            String updateQuery2 = "UPDATE dboProducto.prodComp SET Codigo = ? WHERE Codigo = ?";
+            PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
+            PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
 
-            StringBuilder resultText = new StringBuilder();
+            statement1.setString(1, newCod);
+            statement1.setString(2, oldCod);
+            statement2.setString(1, newCod);
+            statement2.setString(2, oldCod);
 
-            // Iterar sobre los resultados de ambas consultas
-            do {
-                ResultSet resultSet = statement.getResultSet();
-                while (resultSet.next()) {
-                    resultText.append(resultSet.getString("Codigo")).append(", ")
-                            .append(resultSet.getString("Producto")).append(", ")
-                            .append(resultSet.getString("Cantidad")).append("\n");
-                }
-                resultText.append("\n"); // Agregar una línea en blanco entre los resultados de cada consulta
-            } while (statement.getMoreResults()); // Verificar si hay más resultados
+            int rowsUpdated1 = statement1.executeUpdate();
+            int rowsUpdated2 = statement2.executeUpdate();
 
-            textArea.setText(resultText.toString());
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los datos: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-   */
-
-
-    /*
-        //CONSULTA A 1 TABLA - CON DATO DE ENTRADA
-        public void displayDataByCode(String codigo, JTextArea textArea) {
-        try {
-            //String query = "SELECT TOP(20)* FROM dboProducto.productos WHERE Codigo='234567'";
-            String query = "SELECT TOP(20)* FROM dboProducto.productos WHERE Codigo = ?";
-            PreparedStatement statement = conn.prepareStatement(query);
-            statement.setString(1, codigo);
-            ResultSet resultSet = statement.executeQuery();
-
-            StringBuilder resultText = new StringBuilder();
-            while (resultSet.next()) {
-                resultText.append(resultSet.getString("Codigo")).append(", ")
-                          .append(resultSet.getString("Producto")).append(", ")
-                          .append(resultSet.getString("Cantidad")).append("\n");
+            if (rowsUpdated1 > 0 && rowsUpdated2 > 0) {
+                JOptionPane.showMessageDialog(null, "Código actualizado correctamente en ambas tablas.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron registros con el código especificado.");
             }
 
-            textArea.setText(resultText.toString());
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los datos: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar el código: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
-     */
- /*
-    //CONSULTA A 1 TABLA - SIN DATOS DE ENTRADA
-    public void displayData(JTextArea textArea) {
-        try {
-            String query = "SELECT TOP(20)* FROM dboProducto.productos WHERE Codigo='234567'";
-            PreparedStatement statement = conn.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
 
-            StringBuilder resultText = new StringBuilder();
-            while (resultSet.next()) {
-                resultText.append(resultSet.getString("Codigo")).append(", ")
-                          .append(resultSet.getString("Producto")).append(", ")
-                          .append(resultSet.getString("Cantidad")).append("\n");
-            }
-
-            textArea.setText(resultText.toString());
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al obtener los datos: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+    public void limpiarCampos(javax.swing.JTextField jTextField_NRODOC_IN, javax.swing.JTextField jTextField_NEWNRODOC_IN, javax.swing.JTextArea jTextArea_ViewPrevRemFac) {
+        jTextField_NRODOC_IN.setText("");
+        jTextField_NEWNRODOC_IN.setText("");
+        jTextArea_ViewPrevRemFac.setText("");
     }
-     */
-    public void updateDataRemFac() {
-        JOptionPane.showMessageDialog(null, "Test, al botón ACTUALIZAR.");
-    }
+
 }
