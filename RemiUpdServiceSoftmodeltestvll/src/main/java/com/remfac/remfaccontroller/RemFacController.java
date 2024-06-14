@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class RemFacController {
 
@@ -15,8 +16,8 @@ public class RemFacController {
         this.conn = conn;
     }
 
-    //CD: 234567   -  123456
-    // Nuevo método para consultar ambas tablas utilizando un código de entrada
+
+    // Método para mostrar datos de ambas tablas por código
     public void displayDataFromBothTablesByCode(String codigo, JTextArea textArea) {
         try {
             String query1 = "SELECT * FROM dboProducto.productos WHERE Codigo = ?";
@@ -24,7 +25,6 @@ public class RemFacController {
             PreparedStatement statement1 = conn.prepareStatement(query1);
             PreparedStatement statement2 = conn.prepareStatement(query2);
 
-            //Esta instruccion se añadio al nuevo metodo
             statement1.setString(1, codigo);
             statement2.setString(1, codigo);
 
@@ -38,7 +38,7 @@ public class RemFacController {
                           .append("Producto: ").append(resultSet1.getString("Producto")).append(", ")
                           .append("Cantidad: ").append(resultSet1.getString("Cantidad")).append("\n");
             }
-            
+
             resultText.append("- - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
             // Resultados de la tabla dboProducto.prodComp
@@ -49,7 +49,7 @@ public class RemFacController {
                           .append("Producto: ").append(resultSet2.getString("Producto")).append(", ")
                           .append("Cantidad: ").append(resultSet2.getString("Cantidad")).append("\n");
             }
-
+            textArea.setEditable(false);
             textArea.setText(resultText.toString());
 
         } catch (SQLException ex) {
@@ -58,7 +58,7 @@ public class RemFacController {
         }
     }
 
-    // UPDATE 'Codigo' in both tables.
+    // Método para actualizar el código en ambas tablas
     public void updateCodigoInBothTables(String oldCod, String newCod) {
         try {
             String updateQuery1 = "UPDATE dboProducto.productos SET Codigo = ? WHERE Codigo = ?";
@@ -86,10 +86,55 @@ public class RemFacController {
         }
     }
 
+    // Nuevo método para actualizar Producto y Cantidad en ambas tablas
+    public void updateFieldsInBothTables(String codigo) {
+        try {
+            String updateQuery1 = "UPDATE dboProducto.productos SET Producto = '', Cantidad = 0 WHERE Codigo = ?";
+            String updateQuery2 = "UPDATE dboProducto.prodComp SET Producto = '', Cantidad = 0 WHERE Codigo = ?";
+            PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
+            PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
+
+            statement1.setString(1, codigo);
+            statement2.setString(1, codigo);
+
+            int rowsUpdated1 = statement1.executeUpdate();
+            int rowsUpdated2 = statement2.executeUpdate();
+
+            if (rowsUpdated1 > 0 && rowsUpdated2 > 0) {
+                JOptionPane.showMessageDialog(null, "Campos actualizados correctamente en ambas tablas.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron registros con el código especificado.");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar los campos: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    
+      // Método para manejar la acción del checkbox
+    public void handleCheckboxAction(boolean isSelected, JTextField jTextField_NEWNRODOC_IN) {
+        if (isSelected) {
+            int response = JOptionPane.showConfirmDialog(null, "¿Desea habilitar la opción de actualizar el número de documento?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                jTextField_NEWNRODOC_IN.setEnabled(true);
+            } else {
+                jTextField_NEWNRODOC_IN.setEnabled(false);
+            }
+        } else {
+            jTextField_NEWNRODOC_IN.setEnabled(false);
+        }
+    }
+
+    // Método para verificar si el campo está habilitado
+    public boolean isFieldEnabled(JTextField jTextField_NEWNRODOC_IN) {
+        return jTextField_NEWNRODOC_IN.isEnabled();
+    }
+
+    // Método para limpiar campos del formulario
     public void limpiarCampos(javax.swing.JTextField jTextField_NRODOC_IN, javax.swing.JTextField jTextField_NEWNRODOC_IN, javax.swing.JTextArea jTextArea_ViewPrevRemFac) {
         jTextField_NRODOC_IN.setText("");
         jTextField_NEWNRODOC_IN.setText("");
         jTextArea_ViewPrevRemFac.setText("");
     }
-
 }
