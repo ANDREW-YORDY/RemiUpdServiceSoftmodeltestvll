@@ -177,6 +177,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="ACTUALIZAR NRO DOCUMENTO">
                   <Font PropertyName="font" name="Arial" size="12" style="1"/>
+                  <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -207,14 +208,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextField_NEWNRODOC_IN" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel_NEWNRODOC_IN" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jLabel_NEWNRODOC_IN" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton_UPDATEBTN_NRODOC" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jCheckBox_HabilitedUpdtNumDoc" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton_UPDATEBTN_NRODOC" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>

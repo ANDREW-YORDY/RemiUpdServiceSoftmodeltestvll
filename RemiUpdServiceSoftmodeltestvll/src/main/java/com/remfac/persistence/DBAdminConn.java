@@ -8,11 +8,14 @@ import javax.swing.JOptionPane;
 
 public class DBAdminConn {
 
-    String user = "rootDB";
-    String passw = "1611propio";
-    String DB = "DBTESTcanvas";
+//    String user = "rootDB";
+//    String passw = "1611propio";
+//    String DB = "DBTESTcanvas";
+    String user = "sa";
+    String passw = "**lamisma2017**";
+    String DB = "PRUEBASSISTEMASS";
     String pto = "1433";
-    String ip = "localhost";
+    String ip = "192.168.45.9";
 
     Connection conn = null;
 

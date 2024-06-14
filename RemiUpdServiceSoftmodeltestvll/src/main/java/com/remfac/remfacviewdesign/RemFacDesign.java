@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class RemFacDesign extends javax.swing.JFrame {
 
-    private RemFacController remFacController;
+    private final RemFacController remFacController;
 
     public RemFacDesign() {
         initComponents();
@@ -61,7 +61,7 @@ public class RemFacDesign extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Systemas UNIROCA Software");
 
-        jPanel_CONT_ACTUALNRODOC.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTUALIZAR NRO DOCUMENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel_CONT_ACTUALNRODOC.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTUALIZAR NRO DOCUMENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
 
         jLabel_NEWNRODOC_IN.setText("INGRESE EL NUEVO NRO");
 
@@ -100,13 +100,13 @@ public class RemFacDesign extends javax.swing.JFrame {
             jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_NEWNRODOC_IN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_NEWNRODOC_IN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_NEWNRODOC_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_UPDATEBTN_NRODOC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox_HabilitedUpdtNumDoc))
+                .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox_HabilitedUpdtNumDoc)
+                    .addComponent(jButton_UPDATEBTN_NRODOC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -191,11 +191,11 @@ public class RemFacDesign extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_SEARCHBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SEARCHBTNActionPerformed
-        String codigoIn = jTextField_NRODOC_IN.getText();
-        remFacController.displayDataFromBothTablesByCode(codigoIn, jTextArea_ViewPrevRemFac);
-        jTextField_NEWNRODOC_IN.setText(codigoIn);
+        String NroDctoIn = jTextField_NRODOC_IN.getText();
+        remFacController.displayDataFromBothTablesByNroDcto(NroDctoIn, jTextArea_ViewPrevRemFac);
+        jTextField_NEWNRODOC_IN.setText(NroDctoIn);
         //remFacController.displayData(jTextArea_ViewPrevRemFac); //1ra PROCESO.
-        //remFacController.displayDataByCode(codigoIn, jTextArea_ViewPrevRemFac); //2da PROCESO
+        //remFacController.displayDataByCode(NroDctoIn, jTextArea_ViewPrevRemFac); //2da PROCESO
         //remFacController.displayDataFromBothTables(jTextArea_ViewPrevRemFac); //3ra PROCESO
     }//GEN-LAST:event_jButton_SEARCHBTNActionPerformed
 
@@ -204,16 +204,16 @@ public class RemFacDesign extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El proceso de actualización no es válido. Debe habilitar la opción de actualizar el número de documento seleccionando el checkbox.");
         } else {
             // Lógica para actualizar el número de documento
-            String oldCod = jTextField_NRODOC_IN.getText();
-            String newCod = jTextField_NEWNRODOC_IN.getText();
-            remFacController.updateCodigoInBothTables(oldCod, newCod);
+            String oldNro = jTextField_NRODOC_IN.getText();
+            String newNro = jTextField_NEWNRODOC_IN.getText();
+            remFacController.updateNroDctoInInBothTables(oldNro, newNro);
             remFacController.limpiarCampos(jTextField_NRODOC_IN, jTextField_NEWNRODOC_IN, jTextArea_ViewPrevRemFac);
         }
     }//GEN-LAST:event_jButton_UPDATEBTN_NRODOCActionPerformed
 
     private void jButton_UPDATEBTN_REMFACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UPDATEBTN_REMFACActionPerformed
-        String codigo = jTextField_NRODOC_IN.getText();
-        remFacController.updateFieldsInBothTables(codigo);
+        String nrodcto = jTextField_NRODOC_IN.getText();
+        remFacController.updateFieldsInBothTables(nrodcto);
         remFacController.limpiarCampos(jTextField_NRODOC_IN, jTextField_NEWNRODOC_IN, jTextArea_ViewPrevRemFac);
     }//GEN-LAST:event_jButton_UPDATEBTN_REMFACActionPerformed
 
