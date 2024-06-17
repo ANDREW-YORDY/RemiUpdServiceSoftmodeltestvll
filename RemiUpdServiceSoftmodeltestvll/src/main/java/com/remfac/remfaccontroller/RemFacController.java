@@ -19,8 +19,8 @@ public class RemFacController {
     // Mostrar datos de ambas tablas por NRODCTO // NRODCTO TEST 50749
     public void displayDataFromBothTablesByNroDcto(String NroDcto, JTextArea textArea) {
         try {
-            String query1 = "SELECT FACTURADO, REMIFACT, NRODCTO FROM TRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
-            String query2 = "SELECT FACTURADO, REMIFACT, NRODCTO, CANTREMIS FROM MVTRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
+            String query1 = "SELECT FACTURADO, REMIFACT, NRODCTO FROM dbop.TRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
+            String query2 = "SELECT FACTURADO, REMIFACT, NRODCTO, CANTREMIS FROM dbop.MVTRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
             PreparedStatement statement1 = conn.prepareStatement(query1);
             PreparedStatement statement2 = conn.prepareStatement(query2);
 
@@ -33,7 +33,7 @@ public class RemFacController {
             resultText.append("*DATA TRADE*:\n");
             ResultSet resultSet1 = statement1.executeQuery();
             while (resultSet1.next()) {
-                resultText.append("FACTURADO: ").append(resultSet1.getString("FACTURADO")).append(", ")
+                resultText.append("FACTURADO: ").append(resultSet1.getInt("FACTURADO")).append(", ")
                           .append("REMIFACT: ").append(resultSet1.getString("REMIFACT")).append(", ")
                           .append("NRODCTO: ").append(resultSet1.getString("NRODCTO")).append("\n");
             }
@@ -44,7 +44,7 @@ public class RemFacController {
             resultText.append("\n*DATA MVTRADE*:\n");
             ResultSet resultSet2 = statement2.executeQuery();
             while (resultSet2.next()) {
-                resultText.append("FACTURADO: ").append(resultSet2.getString("FACTURADO")).append(", ")
+                resultText.append("FACTURADO: ").append(resultSet2.getInt("FACTURADO")).append(", ")
                           .append("REMIFACT: ").append(resultSet2.getString("REMIFACT")).append(", ")
                           .append("NRODCTO: ").append(resultSet2.getString("NRODCTO")).append(", ")
                           .append("CANTREMIS: ").append(resultSet2.getInt("CANTREMIS")).append("\n");
@@ -62,8 +62,8 @@ public class RemFacController {
     // Método para actualizar el NRODCTO en ambas tablas
     public void updateNroDctoInInBothTables(String oldCod, String newCod) {
         try {
-            String updateQuery1 = "UPDATE TRADE SET NRODCTO = ? WHERE NRODCTO = ?";
-            String updateQuery2 = "UPDATE MVTRADE SET NRODCTO = ? WHERE NRODCTO = ?";
+            String updateQuery1 = "UPDATE dbop.TRADE SET NRODCTO = ? WHERE NRODCTO = ?";
+            String updateQuery2 = "UPDATE dbop.MVTRADE SET NRODCTO = ? WHERE NRODCTO = ?";
             PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
             PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
 
@@ -87,11 +87,35 @@ public class RemFacController {
         }
     }
 
+    // Método para obtener el valor actual de REMIFACT
+    private String getCurrentRemifact(String nrodcto) throws SQLException {
+        String currentRemifact = "";
+        String query = "SELECT REMIFACT FROM dbop.TRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setString(1, nrodcto);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            currentRemifact = resultSet.getString("REMIFACT");
+        }
+        return currentRemifact;
+    }
+
     // Método para actualizar campos en ambas tablas
     public void updateFieldsInBothTables(String nrodcto) {
         try {
-            String updateQuery1 = "UPDATE TRADE SET REMIFACT='', FACTURADO='0' WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
-            String updateQuery2 = "UPDATE MVTRADE SET REMIFACT='', FACTURADO='0', CANTREMIS=0.0000000 WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO IN(?)";
+            // Obtener el valor actual de REMIFACT
+            String currentRemifact = getCurrentRemifact(nrodcto);
+
+            // Guardar el valor de REMIFACT en la columna NOTA
+            String updateNotaQuery = "UPDATE dbop.TRADE SET NOTA='REMISION ANTERIOR: '+ ? WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ? AND NOTA IS NOT NULL";
+            PreparedStatement updateNotaStmt = conn.prepareStatement(updateNotaQuery);
+            updateNotaStmt.setString(1,currentRemifact);
+            updateNotaStmt.setString(2, nrodcto);
+            updateNotaStmt.executeUpdate();
+
+            // Actualizar los campos en ambas tablas
+            String updateQuery1 = "UPDATE dbop.TRADE SET REMIFACT='', FACTURADO='0' WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
+            String updateQuery2 = "UPDATE dbop.MVTRADE SET REMIFACT='', FACTURADO='0.0000000', CANTREMIS=0.0000000 WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
             PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
             PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
 
