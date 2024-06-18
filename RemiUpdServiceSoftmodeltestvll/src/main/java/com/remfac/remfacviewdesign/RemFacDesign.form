@@ -46,7 +46,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder>
-              <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
+              <Color PropertyName="color" blue="1e" green="1e" red="1e" type="rgb"/>
             </LineBorder>
           </Border>
         </Property>
@@ -105,8 +105,8 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="136" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="64" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   <Component id="jPanel_CONT_ACTUALNRODOC" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton_UPDATEBTN_REMFAC" min="-2" pref="35" max="-2" attributes="0"/>
@@ -190,9 +190,9 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel_NEWNRODOC_IN" min="-2" pref="159" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField_NEWNRODOC_IN" min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="jLabel_NEWNRODOC_IN" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jTextField_NEWNRODOC_IN" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jButton_UPDATEBTN_NRODOC" min="-2" max="-2" attributes="0"/>
@@ -225,7 +225,10 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel_NEWNRODOC_IN">
               <Properties>
-                <Property name="text" type="java.lang.String" value="INGRESE EL NUEVO NRO"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="INGRESE EL NUEVO NRODCTO"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_NEWNRODOC_IN">
@@ -235,7 +238,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="10" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ACTUALIZAR NRO"/>
+                <Property name="text" type="java.lang.String" value="ACTUALIZAR NRODCTO"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_UPDATEBTN_NRODOCActionPerformed"/>
@@ -253,7 +256,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ACTUALIZAR REMFAC"/>
+            <Property name="text" type="java.lang.String" value="ACTUALIZAR REMIFACT"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_UPDATEBTN_REMFACActionPerformed"/>

@@ -35,7 +35,7 @@ public class RemFacDesign extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(30, 30, 30)));
 
         jButton_SEARCHBTN.setText("🔎");
         jButton_SEARCHBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -63,10 +63,11 @@ public class RemFacDesign extends javax.swing.JFrame {
 
         jPanel_CONT_ACTUALNRODOC.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTUALIZAR NRO DOCUMENTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
 
-        jLabel_NEWNRODOC_IN.setText("INGRESE EL NUEVO NRO");
+        jLabel_NEWNRODOC_IN.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel_NEWNRODOC_IN.setText("INGRESE EL NUEVO NRODCTO");
 
         jButton_UPDATEBTN_NRODOC.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        jButton_UPDATEBTN_NRODOC.setText("ACTUALIZAR NRO");
+        jButton_UPDATEBTN_NRODOC.setText("ACTUALIZAR NRODCTO");
         jButton_UPDATEBTN_NRODOC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_UPDATEBTN_NRODOCActionPerformed(evt);
@@ -87,9 +88,9 @@ public class RemFacDesign extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createSequentialGroup()
-                        .addComponent(jLabel_NEWNRODOC_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField_NEWNRODOC_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel_NEWNRODOC_IN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_NEWNRODOC_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_CONT_ACTUALNRODOCLayout.createSequentialGroup()
                         .addComponent(jButton_UPDATEBTN_NRODOC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,7 +112,7 @@ public class RemFacDesign extends javax.swing.JFrame {
         );
 
         jButton_UPDATEBTN_REMFAC.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton_UPDATEBTN_REMFAC.setText("ACTUALIZAR REMFAC");
+        jButton_UPDATEBTN_REMFAC.setText("ACTUALIZAR REMIFACT");
         jButton_UPDATEBTN_REMFAC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_UPDATEBTN_REMFACActionPerformed(evt);
@@ -160,8 +161,8 @@ public class RemFacDesign extends javax.swing.JFrame {
                         .addComponent(jButton_SEARCHBTN)
                         .addComponent(jLabel_NroDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
                 .addComponent(jPanel_CONT_ACTUALNRODOC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButton_UPDATEBTN_REMFAC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
