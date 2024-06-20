@@ -55,34 +55,47 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                           <Component id="jLabel_TitleMain" min="-2" pref="291" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButton_BACK_GOMENU" min="-2" pref="99" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jButton_SEARCHBTN_ANTIREMFACT" min="-2" pref="368" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jButton_UPDTBTN_ANTIREMFACT" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jTextField_REMI_IN" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton_SEARCHBTN_ANTIREMFACT" min="-2" pref="64" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="368" max="-2" attributes="0"/>
+                              <Component id="jButton_UPDTBTN_ANTIREMFACT" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="0" pref="181" max="32767" attributes="0"/>
+                                          <Component id="jTextField_REMI_IN" min="-2" pref="142" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel_RE" min="-2" pref="132" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jLabel_RE" min="-2" pref="132" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -90,18 +103,21 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton_BACK_GOMENU" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel_TitleMain" min="-2" pref="28" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTextField_REMI_IN" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel_RE" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jButton_SEARCHBTN_ANTIREMFACT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="31" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="102" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="jButton_SEARCHBTN_ANTIREMFACT" min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton_UPDTBTN_ANTIREMFACT" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -151,10 +167,18 @@
         </Container>
         <Component class="javax.swing.JButton" name="jButton_SEARCHBTN_ANTIREMFACT">
           <Properties>
-            <Property name="text" type="java.lang.String" value="\ud83d\udd0e" containsInvalidXMLChars="true"/>
+            <Property name="text" type="java.lang.String" value="BUSCAR REMISION"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_SEARCHBTN_ANTIREMFACTActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_BACK_GOMENU">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x25c0; Back"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_BACK_GOMENUActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
