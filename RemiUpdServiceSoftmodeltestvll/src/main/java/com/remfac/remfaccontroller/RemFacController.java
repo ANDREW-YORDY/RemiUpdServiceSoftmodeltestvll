@@ -41,16 +41,15 @@ public class RemFacController {
 
             //resultText.append("- - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             // Resultados de la tabla MVTRADE
-            /*
             resultText.append("\n*DATA MVTRADE*:\n");
             ResultSet resultSet2 = statement2.executeQuery();
             while (resultSet2.next()) {
                 resultText.append("FACTURADO:").append(resultSet2.getInt("FACTURADO")).append(",")
-                          .append("REMIFACT:").append(resultSet2.getString("REMIFACT")).append(",")
-                          .append("NRODCTO:").append(resultSet2.getString("NRODCTO")).append(",")
-                          .append("CANTREMIS:").append(resultSet2.getInt("CANTREMIS")).append("\n");
-            } 
-             */
+                        .append("REMIFACT:").append(resultSet2.getString("REMIFACT")).append(",")
+                        .append("NRODCTO:").append(resultSet2.getString("NRODCTO")).append(",")
+                        .append("CANTREMIS:").append(resultSet2.getInt("CANTREMIS")).append("\n");
+            }
+
             textArea.setEditable(false);
             textArea.setText(resultText.toString());
 
@@ -89,19 +88,20 @@ public class RemFacController {
         }
     }
 
-    // Método para obtener el valor actual de REMIFACT
+// Método para obtener el valor actual de REMIFACT
     private String getCurrentRemifact(String nrodcto) throws SQLException {
-
+        String remifactValue = ""; // Variable para almacenar el valor de REMIFACT
         String query = "SELECT REMIFACT FROM TRADE WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, nrodcto);
-            try (ResultSet resultSet = statement.executeQuery();) {
+            try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    resultSet.getString("REMIFACT");
+                    // Asignar el valor de REMIFACT a la variable
+                    remifactValue = resultSet.getString("REMIFACT");
                 }
             }
         }
-        return "";
+        return remifactValue; // Retornar el valor de REMIFACT
     }
 
     // Método para actualizar campos en ambas tablas
@@ -110,8 +110,8 @@ public class RemFacController {
             // Obtener el valor actual de REMIFACT
             String currentRemifact = getCurrentRemifact(nrodcto);
 
-            // Guardar el valor de REMIFACT en la columna NOTA
-            String updateNotaQuery = "UPDATE TRADE SET NOTA='FACTURA ANTERIOR: '+ ? WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ? AND NOTA IS NOT NULL";
+            // Guardar el valor de REMIFACT en la columna NOTA, incluso si actualmente es nulo
+            String updateNotaQuery = "UPDATE TRADE SET NOTA = 'FACTURA ANTERIOR: ' + ? WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND NRODCTO = ?";
             try (PreparedStatement updateNotaStmt = conn.prepareStatement(updateNotaQuery)) {
                 updateNotaStmt.setString(1, currentRemifact);
                 updateNotaStmt.setString(2, nrodcto);
@@ -119,8 +119,8 @@ public class RemFacController {
             }
 
             // Actualizar los campos en ambas tablas
-            String updateQuery1 = "UPDATE TRADE SET REMIFACT='', FACTURADO=0.0000000 WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
-            String updateQuery2 = "UPDATE MVTRADE SET REMIFACT='', FACTURADO=0.0000000, CANTREMIS=0.0000000 WHERE ORIGEN='FAC' AND TIPODCTO='RE' AND NRODCTO = ?";
+            String updateQuery1 = "UPDATE TRADE SET REMIFACT = '', FACTURADO = 0.0000000 WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND NRODCTO = ?";
+            String updateQuery2 = "UPDATE MVTRADE SET REMIFACT = '', FACTURADO = 0.0000000, CANTREMIS = 0.0000000 WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND NRODCTO = ?";
 
             try (PreparedStatement statement1 = conn.prepareStatement(updateQuery1); PreparedStatement statement2 = conn.prepareStatement(updateQuery2)) {
 

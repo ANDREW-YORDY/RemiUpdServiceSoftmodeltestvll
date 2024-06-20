@@ -14,19 +14,15 @@ public class CORERemfactRevise {
         this.conn = conn;
     }
 
-    // Método para actualizar el REMIFACT en ambas tablas
     public void updateRemifactNRInBothTables(String remisionNum) {
-        // Verificar que el campo no esté vacío
         if (remisionNum.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo de remisión no puede estar vacío.");
             return;
         }
 
-        // Concatenar el prefijo 'NR' al número de remisión
         String remifactNR = "NR" + remisionNum;
 
-        // Verificar si el número de remisión existe en la tabla TRADE antes de actualizar
-        String checkQuery = "SELECT COUNT(*) FROM dbop.TRADE WHERE REMISION = ?";
+        String checkQuery = "SELECT COUNT(*) FROM TRADE WHERE REMISION = ?";
         try {
             PreparedStatement checkStatement = conn.prepareStatement(checkQuery);
             checkStatement.setString(1, remisionNum);
@@ -43,33 +39,50 @@ public class CORERemfactRevise {
             return;
         }
 
-        String updateQuery1 = "UPDATE dbop.TRADE SET REMIFACT = ? WHERE REMISION = ?";
-        String updateQuery2 = "UPDATE dbop.MVTRADE SET REMIFACT = ?";
-
+        // Recuperar los NRODCTO de la tabla TRADE para la remisión dada
+        String nroDctoQuery = "SELECT NRODCTO FROM TRADE WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND REMISION = ?";
         try {
-            PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
-            PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
+            PreparedStatement nroDctoStatement = conn.prepareStatement(nroDctoQuery);
+            nroDctoStatement.setString(1, remisionNum);
+            ResultSet nroDctoResultSet = nroDctoStatement.executeQuery();
 
-            statement1.setString(1, remifactNR);
-            statement1.setString(2, remisionNum);
+            while (nroDctoResultSet.next()) {
+                String nroDcto = nroDctoResultSet.getString("NRODCTO");
 
-            statement2.setString(1, remifactNR);
+                if (nroDcto == null) {
+                    JOptionPane.showMessageDialog(null, "No se pudo encontrar NRODCTO correspondiente en la tabla TRADE.");
+                    continue;
+                }
 
-            int rowsUpdated1 = statement1.executeUpdate();
-            int rowsUpdated2 = statement2.executeUpdate();
+                // Actualizar REMIFACT en la tabla TRADE
+                String updateQuery1 = "UPDATE TRADE SET REMIFACT = ? ,FACTURADO=1 WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND REMISION = ?";
+                try {
+                    PreparedStatement statement1 = conn.prepareStatement(updateQuery1);
+                    statement1.setString(1, remifactNR);
+                    statement1.setString(2, remisionNum);
+                    statement1.executeUpdate();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar el código en TRADE: " + ex.getMessage());
+                    ex.printStackTrace();
+                }
 
-            if (rowsUpdated1 > 0 && rowsUpdated2 > 0) {
-                JOptionPane.showMessageDialog(null, "Código actualizado correctamente en ambas tablas.");
-            } else if (rowsUpdated1 > 0) {
-                JOptionPane.showMessageDialog(null, "Código actualizado correctamente en la tabla TRADE, pero no se encontró en MVTRADE.");
-            } else if (rowsUpdated2 > 0) {
-                JOptionPane.showMessageDialog(null, "Código actualizado correctamente en la tabla MVTRADE, pero no se encontró en TRADE.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron registros con el código especificado en ninguna tabla.");
+                // Actualizar REMIFACT en la tabla MVTRADE
+                String updateQuery2 = "UPDATE MVTRADE SET REMIFACT = ? ,FACTURADO=1 WHERE ORIGEN = 'FAC' AND TIPODCTO = 'RE' AND NRODCTO = ?";
+                try {
+                    PreparedStatement statement2 = conn.prepareStatement(updateQuery2);
+                    statement2.setString(1, remifactNR);
+                    statement2.setString(2, nroDcto);
+                    statement2.executeUpdate();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar el código en MVTRADE: " + ex.getMessage());
+                    ex.printStackTrace();
+                }
             }
 
+            JOptionPane.showMessageDialog(null, "Código actualizado correctamente en ambas tablas.");
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el código: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al recuperar NRODCTO de la tabla TRADE: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

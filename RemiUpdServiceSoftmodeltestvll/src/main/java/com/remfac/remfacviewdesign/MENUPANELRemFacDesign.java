@@ -1,9 +1,17 @@
 package com.remfac.remfacviewdesign;
 
+import com.remfac.remfacviewdesign.ui.customcomponents.UIAdminImg;
+
 public class MENUPANELRemFacDesign extends javax.swing.JFrame {
+
+    private UIAdminImg uIAdminImg;
 
     public MENUPANELRemFacDesign() {
         initComponents();
+       uIAdminImg = new UIAdminImg();
+//        //ESTABLECE LA IMAGEN EN el componente jPanel_LOGO_UNIRC
+        uIAdminImg.setManageIMG(jPanel_LOGO_UNIRC, "resources/logo-uniroca.png");
+        //jPanel_LOGO_UNIRC.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -13,11 +21,14 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
         jPanel_CONTENT = new javax.swing.JPanel();
         jButton_UPDATE_REMIFACTNRODCTO = new javax.swing.JButton();
         jButton_UPDATE_REMISION = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel_TITLE = new javax.swing.JLabel();
+        jPanel_LOGO_UNIRC = new javax.swing.JPanel();
+        jLabel_FOOT_TEXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel_CONTENT.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton_UPDATE_REMIFACTNRODCTO.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton_UPDATE_REMIFACTNRODCTO.setText("ACTUALIZAR FACTURA CON NUM DE DOCUMENTO");
@@ -37,44 +48,69 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MENU");
+        jLabel_TITLE.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel_TITLE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_TITLE.setText("MENU");
+
+        jPanel_LOGO_UNIRC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        javax.swing.GroupLayout jPanel_LOGO_UNIRCLayout = new javax.swing.GroupLayout(jPanel_LOGO_UNIRC);
+        jPanel_LOGO_UNIRC.setLayout(jPanel_LOGO_UNIRCLayout);
+        jPanel_LOGO_UNIRCLayout.setHorizontalGroup(
+            jPanel_LOGO_UNIRCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel_LOGO_UNIRCLayout.setVerticalGroup(
+            jPanel_LOGO_UNIRCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel_CONTENTLayout = new javax.swing.GroupLayout(jPanel_CONTENT);
         jPanel_CONTENT.setLayout(jPanel_CONTENTLayout);
         jPanel_CONTENTLayout.setHorizontalGroup(
             jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CONTENTLayout.createSequentialGroup()
+                .addContainerGap(218, Short.MAX_VALUE)
+                .addComponent(jLabel_TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton_UPDATE_REMIFACTNRODCTO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CONTENTLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212))
+                    .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_LOGO_UNIRC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_CONTENTLayout.setVerticalGroup(
             jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButton_UPDATE_REMIFACTNRODCTO)
-                .addGap(39, 39, 39)
-                .addComponent(jButton_UPDATE_REMISION)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addComponent(jLabel_TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addComponent(jButton_UPDATE_REMIFACTNRODCTO, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jPanel_LOGO_UNIRC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
+
+        jLabel_FOOT_TEXT.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        jLabel_FOOT_TEXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_FOOT_TEXT.setText("Systemas UNIROCA Software");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(jLabel_FOOT_TEXT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +118,9 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_FOOT_TEXT)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,7 +180,9 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_UPDATE_REMIFACTNRODCTO;
     private javax.swing.JButton jButton_UPDATE_REMISION;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_FOOT_TEXT;
+    private javax.swing.JLabel jLabel_TITLE;
     private javax.swing.JPanel jPanel_CONTENT;
+    private javax.swing.JPanel jPanel_LOGO_UNIRC;
     // End of variables declaration//GEN-END:variables
 }
