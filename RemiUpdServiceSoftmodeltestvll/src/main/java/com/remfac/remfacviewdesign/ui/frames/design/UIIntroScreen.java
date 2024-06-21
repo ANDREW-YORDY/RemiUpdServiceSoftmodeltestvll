@@ -17,9 +17,9 @@ public class UIIntroScreen extends javax.swing.JPanel {
     public void MessageIntro(){
         JOptionPane.showMessageDialog(null, "NUEVA CLASE JPANEL INTRO SCREEN");
         //
-        if (listener != null){
-            listener.onIntroScreenFinished();
-        }
+//        if (listener != null){
+//            listener.onIntroScreenFinished();
+//        }
     }
     
     

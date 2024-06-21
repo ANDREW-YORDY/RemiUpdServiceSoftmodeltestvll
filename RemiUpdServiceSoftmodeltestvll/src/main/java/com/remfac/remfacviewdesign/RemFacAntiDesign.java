@@ -3,6 +3,7 @@ package com.remfac.remfacviewdesign;
 import com.remfac.persistence.DBAdminConn;
 import com.remfac.remfaccontroller.core.CORERemfactRevise;
 import com.remfac.remfaccontroller.core.CORERemfactObtain;
+import java.sql.Connection;
 
 public class RemFacAntiDesign extends javax.swing.JFrame {
 
@@ -11,8 +12,10 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
 
     public RemFacAntiDesign() {
         initComponents();
-        remfactRevise = new CORERemfactRevise(new DBAdminConn().DBGoToConnection());
-        remfactObtain = new CORERemfactObtain(new DBAdminConn().DBGoToConnection());
+        DBAdminConn dbConn = new DBAdminConn(); // Crear una única instancia de DBAdminConn
+        Connection connection = dbConn.DBGoToConnection(); // Obtener la conexión
+        remfactRevise = new CORERemfactRevise(connection); // Pasar la misma conexión a ambos controladores
+        remfactObtain = new CORERemfactObtain(connection);
     }
 
     @SuppressWarnings("unchecked")
@@ -31,28 +34,43 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
         jButton_BACK_GOMENU = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
 
-        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel_CONTENT.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel_CONTENT.setPreferredSize(new java.awt.Dimension(490, 542));
 
-        jLabel_TitleMain.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_TitleMain.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel_TitleMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_TitleMain.setText("MODIFICACIÓN DE FACTURA REMI-FACT");
 
+        jLabel_RE.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel_RE.setText("INGRESAR REMISION");
 
-        jButton_UPDTBTN_ANTIREMFACT.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton_UPDTBTN_ANTIREMFACT.setText("CREAR REMISION");
+        jTextField_REMI_IN.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTextField_REMI_IN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jButton_UPDTBTN_ANTIREMFACT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton_UPDTBTN_ANTIREMFACT.setText("INGREZAR REMISION");
+        jButton_UPDTBTN_ANTIREMFACT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton_UPDTBTN_ANTIREMFACT.setPreferredSize(new java.awt.Dimension(197, 28));
         jButton_UPDTBTN_ANTIREMFACT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_UPDTBTN_ANTIREMFACTActionPerformed(evt);
             }
         });
 
+        jTextArea_ViewPrevAntiRemFac.setEditable(false);
         jTextArea_ViewPrevAntiRemFac.setColumns(20);
+        jTextArea_ViewPrevAntiRemFac.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea_ViewPrevAntiRemFac.setRows(5);
+        jTextArea_ViewPrevAntiRemFac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextArea_ViewPrevAntiRemFac.setPreferredSize(new java.awt.Dimension(192, 74));
         jScrollPane1.setViewportView(jTextArea_ViewPrevAntiRemFac);
 
+        jButton_SEARCHBTN_ANTIREMFACT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton_SEARCHBTN_ANTIREMFACT.setText("BUSCAR REMISION");
+        jButton_SEARCHBTN_ANTIREMFACT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton_SEARCHBTN_ANTIREMFACT.setPreferredSize(new java.awt.Dimension(197, 28));
         jButton_SEARCHBTN_ANTIREMFACT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SEARCHBTN_ANTIREMFACTActionPerformed(evt);
@@ -68,47 +86,52 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
         jPanel_CONTENTLayout.setHorizontalGroup(
             jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel_FOOT_TEXT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jLabel_TitleMain, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 58, Short.MAX_VALUE))
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
                 .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_SEARCHBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_UPDTBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_CONTENTLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel_TitleMain, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_SEARCHBTN_ANTIREMFACT, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_UPDTBTN_ANTIREMFACT, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)))
+                    .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel_RE, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_REMI_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(97, 97, 97))
+                        .addGap(26, 26, 26)
+                        .addComponent(jTextField_REMI_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel_FOOT_TEXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel_CONTENTLayout.setVerticalGroup(
             jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addContainerGap()
                 .addComponent(jLabel_TitleMain, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(78, 78, 78)
                 .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_REMI_IN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_REMI_IN, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_RE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButton_SEARCHBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton_UPDTBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addComponent(jButton_SEARCHBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_UPDTBTN_ANTIREMFACT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel_FOOT_TEXT)
                 .addContainerGap())
         );
 
-        jButton_BACK_GOMENU.setText("◀ Back");
+        jButton_BACK_GOMENU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton_BACK_GOMENU.setText(" Back");
+        jButton_BACK_GOMENU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton_BACK_GOMENU.setPreferredSize(new java.awt.Dimension(70, 22));
         jButton_BACK_GOMENU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_BACK_GOMENUActionPerformed(evt);
@@ -122,9 +145,9 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_BACK_GOMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_BACK_GOMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -132,8 +155,8 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton_BACK_GOMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jButton_BACK_GOMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -147,6 +170,7 @@ public class RemFacAntiDesign extends javax.swing.JFrame {
 
         // Llamar al método del controlador para actualizar las tablas
         remfactRevise.updateRemifactNRInBothTables(remisionNum);
+        remfactRevise.limpiarCampos(jTextField_REMI_IN, jTextArea_ViewPrevAntiRemFac);
     }//GEN-LAST:event_jButton_UPDTBTN_ANTIREMFACTActionPerformed
 
     private void jButton_SEARCHBTN_ANTIREMFACTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SEARCHBTN_ANTIREMFACTActionPerformed

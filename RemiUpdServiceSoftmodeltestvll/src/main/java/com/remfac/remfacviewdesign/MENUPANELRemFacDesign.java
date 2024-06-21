@@ -4,13 +4,13 @@ import com.remfac.remfacviewdesign.ui.customcomponents.UIAdminImg;
 
 public class MENUPANELRemFacDesign extends javax.swing.JFrame {
 
-    private UIAdminImg uIAdminImg;
+    //private UIAdminImg uIAdminImg;
 
     public MENUPANELRemFacDesign() {
         initComponents();
-       uIAdminImg = new UIAdminImg();
+       //uIAdminImg = new UIAdminImg();
 //        //ESTABLECE LA IMAGEN EN el componente jPanel_LOGO_UNIRC
-        uIAdminImg.setManageIMG(jPanel_LOGO_UNIRC, "resources/logo-uniroca.png");
+        //uIAdminImg.setManageIMG(jPanel_LOGO_UNIRC, "resources/logo-uniroca.png");
         //jPanel_LOGO_UNIRC.setVisible(true);
     }
 
@@ -26,12 +26,14 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
         jLabel_FOOT_TEXT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(650, 500));
 
-        jPanel_CONTENT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel_CONTENT.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel_CONTENT.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jButton_UPDATE_REMIFACTNRODCTO.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton_UPDATE_REMIFACTNRODCTO.setText("ACTUALIZAR FACTURA CON NUM DE DOCUMENTO");
+        jButton_UPDATE_REMIFACTNRODCTO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jButton_UPDATE_REMIFACTNRODCTO.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton_UPDATE_REMIFACTNRODCTO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,6 +43,7 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
 
         jButton_UPDATE_REMISION.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton_UPDATE_REMISION.setText("ACTUALIZAR FACTURA CON NUM DE REMISION");
+        jButton_UPDATE_REMISION.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jButton_UPDATE_REMISION.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton_UPDATE_REMISION.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,17 +51,15 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
             }
         });
 
-        jLabel_TITLE.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel_TITLE.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel_TITLE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_TITLE.setText("MENU");
-
-        jPanel_LOGO_UNIRC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel_LOGO_UNIRCLayout = new javax.swing.GroupLayout(jPanel_LOGO_UNIRC);
         jPanel_LOGO_UNIRC.setLayout(jPanel_LOGO_UNIRCLayout);
         jPanel_LOGO_UNIRCLayout.setHorizontalGroup(
             jPanel_LOGO_UNIRCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
         jPanel_LOGO_UNIRCLayout.setVerticalGroup(
             jPanel_LOGO_UNIRCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,23 +75,28 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
                 .addComponent(jLabel_TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(212, 212, 212))
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton_UPDATE_REMIFACTNRODCTO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_LOGO_UNIRC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jPanel_LOGO_UNIRC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
+                        .addGroup(jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_UPDATE_REMIFACTNRODCTO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel_CONTENTLayout.setVerticalGroup(
             jPanel_CONTENTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CONTENTLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(92, 92, 92)
                 .addComponent(jButton_UPDATE_REMIFACTNRODCTO, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_UPDATE_REMISION, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jPanel_LOGO_UNIRC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -104,14 +110,11 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jLabel_FOOT_TEXT, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_FOOT_TEXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +123,7 @@ public class MENUPANELRemFacDesign extends javax.swing.JFrame {
                 .addComponent(jPanel_CONTENT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_FOOT_TEXT)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();

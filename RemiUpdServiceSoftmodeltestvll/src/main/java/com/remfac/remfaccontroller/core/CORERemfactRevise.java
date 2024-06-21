@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class CORERemfactRevise {
 
@@ -86,4 +88,10 @@ public class CORERemfactRevise {
             ex.printStackTrace();
         }
     }
+
+    public void limpiarCampos(JTextField jTextField_REMI_IN, JTextArea jTextArea_ViewPrevAntiRemFac) {
+        jTextField_REMI_IN.setText("");
+        jTextArea_ViewPrevAntiRemFac.setText("");
+    }
+
 }
